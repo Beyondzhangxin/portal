@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<meta charset="utf-8">
+<title>航天科工智慧产业发展有限公司</title>
+ <script src="js/jquery2.0.js"></script> 
+<!-- <script src="js/jquery-1.8.3.min.js"></script> -->
+ <!-- <script src="js/bootstrap.js"></script>  -->
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<script src="js/main.js"></script>
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+<style>
+.navbar{ margin-bottom:0px;background-color:#FFF !important}
+.contanter{ width:100%; margin:auto;}
+#Validform_msg,.Validform_title,.Validform_close{
+	display:none;
+}
+/* .navbar-nav li{
+	float:left;
+}
+.navbar-nav a {
+    color: #777;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.nav  a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+} */
+</style>
+</head>
+
+<body style=" background-image:url(images/images/bg.png); width:100%; height:100%;overflow-x:hidden">
+<nav class="navbar navbar-default" role="navigation" style="padding-top:10px ; padding-bottom:10px">
+	<div class="container-fluid"> 
+	<div class="navbar-header">
+		<img style=" margin-left:2%" src="images/logo.jpg">
+	</div>
+	<div id="myexample" style=" font-size:16px; ">
+		<ul class="nav navbar-nav" style="float:right !important">
+			<li class="tabtitle"><a class="wel"  style="cursor:pointer" onClick="javascript:openUrl('welcome2.html','contanter')">首页</a></li>
+			<li class="dropdown tabtitle"><a class="dropdown-toggle" ><!-- data-toggle="dropdown" -->公司概况<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a id="action-1" style="cursor:pointer" onClick="javascript:openUrl('gsjj.html','contanter')">公司简介</a></li>
+					<li class="divider"></li>
+					<li><a style="cursor:pointer" onClick="javascript:openUrl('gsld.html','contanter')">公司领导</a></li>
+					<li class="divider"></li>
+					<li><a style="cursor:pointer" onClick="javascript:openUrl('zzjg.html','contanter')">组织机构</a></li>
+					<li class="divider"></li>
+					<li><a style="cursor:pointer" onClick="javascript:openUrl('qywh.html','contanter')">企业文化</a></li>
+					<li class="divider"></li>
+					<li><a style="cursor:pointer" onClick="javascript:openUrl('ryzz.html','contanter')">企业荣誉与资质</a></li>
+				</ul>
+			</li>
+            <li class="tabtitle"><a style="cursor:pointer" onClick="javascript:openUrl('news.html','contanter')">公司新闻</a></li>
+            <li class="tabtitle"><a style="cursor:pointer" onClick="javascript:openUrl('gscp.html','contanter')">公司产品</a></li>
+            <li class="tabtitle"><a style="cursor:pointer" onClick="javascript:openUrl('jjfa.html','contanter')">解决方案</a></li>
+            <li class="tabtitle"><a style="cursor:pointer" onClick="javascript:openUrl('rczp.html','contanter')">人才招聘</a></li>
+            <li class="tabtitle"><a style="cursor:pointer" onClick="javascript:openUrl('lylb.html','contanter')">客户留言</a></li>
+            <li class="tabtitle"><a style="cursor:pointer" onClick="javascript:openUrl('about.html','contanter')">联系我们</a></li>
+		</ul>
+	</div>
+	</div>	
+</nav>
+<div class="contanter" >
+
+</div>
+<script>
+    $(function () {
+        openUrl('welcome2.html', 'contanter');
+    });
+$(".tabtitle").click(function(){
+	$(this).addClass("active").siblings().removeClass("active");
+})	
+$('.dropdown').hover(function(){
+	$('.dropdown-menu').slideDown(300);
+},function(){
+	$('.dropdown-menu').hide()
+})
+</script>
+</body>
+</html>

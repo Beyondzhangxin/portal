@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>企业文化</title>
+<script src="js/jquery2.0.js"></script>
+<script src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+<script src="js/pagination/jquery.pagination.js"></script>
+<style>
+a,a:visited,a:active,a:link{
+	 text-decoration:none;
+	 color:black;
+}
+a:hover{text-decoration:none;color:#1C3E7E}
+.navbar{ background-color:#FFF !important}
+.contanter{ width:80%; margin:auto;}
+.gsjj{ width:50%;  float:left}
+.jsiu p{ clear:both; line-height:30px}
+.koj img{ float:left; margin-right:5px; margin-top:7px}
+.koj div{ float:left}
+.koj h5{ float:left}
+li{ list-style:none;}
+.jj_news{  width:100%; margin-left:0px; clear:both; float:left}
+.jj_news img{ float:left; margin-top:7px; margin-right:5px;}
+.jj_news h5{ float:left}
+.x{ float:left; width:92%; height:1px; background-color:#666; margin:17px 5px 0 5px}
+.jj_news a{ float:left; margin-top:7px}
+.jj_news ul{ clear:both; margin-top:70px}
+.jj_news ul li{clear:both; height:150px;border:1px solid #b4b6b8; margin-bottom:100px;margin-left:-40px; background-color:#FFF;}
+.jj_news ul li .sio{height:150px; text-overflow:ellipsis;    overflow: hidden; }
+.jj_news ul li img{float:left; margin-left:20px; width:340px; height:200px;margin-top:-30px}
+.jj_news ul li div{float:left}
+.sio{ width:63%; margin-left:10px; margin-top:-18px}
+p{
+margin:6px 0;
+word-break: break-all; word-wrap:break-word; }
+.sio img{
+	display:none;
+}
+
+</style>
+</head>
+
+<body style=" background-image:url(images/images/bg.png); width:100%; height:100%">
+
+<!-- 	<div id="myTabContent" class="tab-content"> -->
+	<div class="tab-pane fade in active" id="home">
+		 <div class="jj_news">
+	
+        <img src="images/images/icon.png">
+        <h5>企业文化</h5>
+        <div class="x"></div>
+   <!--      <a href="#">更多>></a> -->
+    
+    <ul class="ryzzUL">
+      <!--   <li>
+        	<img src="images/thr.png">	
+            <div class="sio">
+            	<h3 style=" font-weight:bold; margin-top:30px"><span style=" border:1px #101011 solid; width:100px; height:32px; display:inline-block; font-size:16px; line-height:32px; text-align:center; margin-right:10px">原创</span>智慧教育解决方案<span style="font-size:16px; margin-left:10px"><span style=" margin-right:10px">作者</span>2017-07-25</span></h3>
+            	<p>中国航天科工集团公司拟解决夫妻 航天云网科技发展有限责任公司 航天云网科技发展有限责任公司中国航天科工集团公司拟解决夫妻 航天云网科技发展有限责任公司 航天云中国航天科工集团公司拟解决夫妻 航天云网科技发展有限责任公司 航天云网科技发展有限责任公司网科技发展有限责任公司</p>
+            </div>
+            
+        </li> -->
+       
+        
+    </ul>
+
+
+ 
+</div>
+	</div>
+<br class="clearfix"/>
+	<div class="M-qywh" ></div>	
+<script>
+function ryzzList() {
+	 pageNo = 1;
+	 pageSize=5;
+  $.ajax({
+      type: 'post',
+      url: 'company/culture/fr_manage',
+      dataType: "json",
+      data: {pageNo:pageNo,pageSize:pageSize},
+      success: function (data) {
+      	var totalData=data.totalCount;
+      	var showData=data.pageSize;
+      	console.log(data.result[0])
+      	var html = '';
+			 $.each(data.result,function(i,m){
+			html+=' <li>';
+			html+=' <img style="width:340px;max-height:200px;border:1px solid #b4b6b8" src="'+m.picName+'">	';
+			html+=' <div class="sio">';
+			html+=' <a href="qywh2.html?id='+m.id+'" target="_blank">';
+			html+=' 	<h3 style=" font-weight:bold; margin-top:30px"><span style="display:inline-block;max-width:200px;white-space:nowrap; text-overflow:ellipsis;   overflow: hidden;">'+m.title+'</span><span style="font-size:16px; margin-left:10px" class="createTime">'+m.createTime+'</span></h3>';
+			html+=' 	<p class="ryzzContent">'+m.content+'</p>';
+ 			html+='   </a>'
+			html+=' </div>';
+ 			html+='   </li>'
+				 
+			}) 
+			$(".ryzzUL").html(html);	
+			 $('p').addClass("cut");
+				cut(".cut",80);
+				cutTime(".createTime",10)
+			 $('.M-qywh').pagination({
+					 totalData	:totalData,
+					 showData:showData,
+					coping:true,
+					homePage:'首页',
+					endPage:'末页',
+					prevContent:'«',
+					nextContent:'»',
+				    callback:function(api){
+				    	 var data = {
+				    			 pageNo: api.getCurrent(),
+				    			 pageSize:pageSize
+				    	 };
+				    	        $.post('company/culture/fr_manage',data,function(data){
+				    	         	var html = '';
+				    				 $.each(data.result,function(i,m){
+				    					 html+=' <li>';
+				    						html+=' <img style="width:340px;max-height:200px;border:1px solid #b4b6b8" src="'+m.picName+'">	';
+				    						html+=' <div class="sio">';
+				    						html+=' <a href="qywh2.html?id='+m.id+'" target="_blank">';
+				    						html+=' 	<h3 style=" font-weight:bold; margin-top:30px"><span style="display:inline-block;max-width:200px;white-space:nowrap; text-overflow:ellipsis;   overflow: hidden;">'+m.title+'</span><span style="font-size:16px; margin-left:10px" class="createTime">'+m.createTime+'</span></h3>';
+				    						html+=' 	<p class="ryzzContent">'+m.content+'</p>';
+				    			 			html+='   </a>'
+				    						html+=' </div>';
+				    			 			html+='   </li>'
+				    				}) 
+				    				$(".ryzzUL").html(html);	
+				    				 $('p').addClass("cut");
+				    					cut(".cut",80);
+				    					cutTime(".createTime",10)
+				    	        });
+				    }
+				})
+			
+      },
+      err: function (data) {
+          alert(data.message);
+      }
+  })
+}
+ryzzList();
+</script>
+
+
+</body>
+</html>
+

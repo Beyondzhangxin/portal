@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>无标题文档</title>
+    <script src="js/jquery2.0.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+    <script src="js/pagination/jquery.pagination.js"></script>
+    <style>
+        .navbar { background-color: #FFF !important }
+
+        .contanter { width: 80%; margin: auto; }
+
+        .gsjj { width: 50%; float: left }
+
+        .jsiu p { clear: both; line-height: 30px }
+
+        .koj img { float: left; margin-right: 5px; margin-top: 7px }
+
+        .koj div { float: left }
+
+        .koj h5 { float: left }
+
+        li { list-style: none; }
+
+        tt {
+            font-weight: bold;
+            font-family: inherit;
+            }
+
+        .jj_news { width: 100%; margin-left: 0px; clear: both; margin-top: 33px; float: left }
+
+        .jj_news img { float: left; margin-top: 7px; margin-right: 5px; }
+
+        .jj_news h5 { float: left }
+
+        .x { float: left; width: 85%; height: 1px; background-color: #666; margin: 17px 5px 0 5px }
+
+        .jj_news > a { float: left; margin-top: 7px }
+
+        .jj_news ul { clear: both; margin-top: 30px }
+
+        .jj_news ul li { clear: both; height: 150px; border: 1px solid #b4b6b8; margin-bottom: 100px; margin-left: -40px; background-color: #FFF }
+
+        .jj_news ul li img { float: left; margin-left: 20px; width: 320px; height: 200px; margin-top: -30px }
+
+        .jj_news ul li div { float: left }
+
+        .sio { width: 58%; margin-left: 10px; margin-top: -18px }
+
+        .gscp_pagination, .gscp_p_pagination { margin: 0 0 4% 40%;
+            }
+
+        .gscp_pagination a, .gscp_pagination span, .gscp_p_pagination a, .gscp_p_pagination span {
+            display: inline-block; width: 34px; height: 34px; line-height: 34px; text-align: center; background: #fff; border: 1px solid #ebebeb }
+
+        .gscp_pagination .active, .gscp_p_pagination .active { background: #337ab7; color: #fff; border: 1px solid #00a6a6;
+            }
+
+        .gscp_ul a, .gscp_p_ul a {
+            color: #000 }
+
+        .gscp_ul a:hover, .gscp_p_ul a:hover { color: #1C3E7E }
+    </style>
+</head>
+
+<body style=" background-image:url(images/images/bg.png); width:100%; height:100%">
+ <input hidden class="subType"/>
+<ul id="myTab" class="nav nav-tabs">
+    <li class="active"><a href="#home" data-toggle="tab">
+        平台类</a></li>
+    <li><a href="#ios" data-toggle="tab">行业类</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="home">
+        <div class="jj_news">
+            <ul class="gscp_ul">
+            </ul>
+            <div class="gscp_pagination"></div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="ios">
+        <div class="jj_news">
+            <ul class="gscp_p_ul"></ul>
+            <div class="gscp_p_pagination"></div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                // 获取已激活的标签页的名称
+                var activeTab = $(e.target).text();
+                // 获取前一个激活的标签页的名称
+                var previousTab = $(e.relatedTarget).text();
+                $(".active-tab span").html(activeTab);
+                $(".previous-tab span").html(previousTab);
+            });
+            $.post('company/product/fr_manage', {pageNo: 1, pageSize: 5, type: 1,subTypeStr:$('.subType').val()}, function (data) {
+                var html = '';
+                var totalData = data.totalCount;
+                var showData = data.pageSize;
+                $.each(data.result, function (i, m) {
+                    html += '<a href="gscp2.html?id=' + m.id + '" target="_blank"><li><img src="' + m.picName + '"><div class="sio"><h3 style=" font-weight:bold; margin-top:30px"><span style=" border:1px #101011 solid; width:100px; height:32px; display:inline-block; font-size:16px; line-height:32px; text-align:center; margin-right:10px">' + m.subTypeString + '</span><tt class="tt">' + m.name + '</tt></h3><p>' + m.content + '</p></div></li></a>'
+                })
+                $(".gscp_ul").html(html);
+                $('p').addClass("cut");
+                cut(".cut", 80);
+                cut(".tt", 15);
+                $(".sio").find("img").remove();
+                $('.gscp_pagination').pagination({
+                    totalData: totalData,
+                    showData: showData,
+                    coping: true,
+                    homePage: '首页',
+                    endPage: '末页',
+                    prevContent: '«',
+                    nextContent: '»',
+                    callback: function (p) {
+                        var num = p.getCurrent();
+                        var html = '';
+                        $.post('company/product/fr_manage', {pageNo: num, pageSize: 5, type: 1,
+                            subTypeStr: $('.subType').val()}, function (data) {
+                            $.each(data.result, function (i, m) {
+                                html += '<a href="gscp2.html?id=' + m.id + '" target="_blank"><li><img src="' + m.picName + '"><div class="sio"><h3 style=" font-weight:bold; margin-top:30px"><span style=" border:1px #101011 solid; width:100px; height:32px; display:inline-block; font-size:16px; line-height:32px; text-align:center; margin-right:10px">' + m.subTypeString + '</span><tt class="tt">' + m.name + '</tt></h3><p>' + m.content + '</p></div></li></a>'
+                            })
+                            $(".gscp_ul").html(html);
+                            $('p').addClass("cut");
+                            cut(".cut", 80);
+                            cut(".tt", 15);
+                            $(".sio").find("img").remove();
+                        })
+                    }
+                })
+            })
+            $.post('company/product/fr_manage', {pageNo: 1, pageSize: 5, type: 2, subTypeStr: $('.subType').val()}, function (data) {
+                var html = '';
+                var totalData = data.totalCount;
+                var showData = data.pageSize;
+                $.each(data.result, function (i, m) {
+                    html += '<a href="gscp2.html?id=' + m.id + '" target="_blank"><li><img src="' + m.picName + '"><div class="sio"><h3 style=" font-weight:bold; margin-top:30px"><span style=" border:1px #101011 solid; width:100px; height:32px; display:inline-block; font-size:16px; line-height:32px; text-align:center; margin-right:10px">' + m.subTypeString + '</span><tt class="tt">' + m.name + '</tt></h3><p>' + m.content + '</p></div></li></a>'
+                })
+                $(".gscp_p_ul").html(html);
+                $('p').addClass("cut");
+                cut(".cut", 80);
+                cut(".tt", 15);
+                $(".sio").find("img").remove();
+                $('.gscp_p_pagination').pagination({
+                    totalData: totalData,
+                    showData: showData,
+                    coping: true,
+                    homePage: '首页',
+                    endPage: '末页',
+                    prevContent: '«',
+                    nextContent: '»',
+                    callback: function (p) {
+                        var num = p.getCurrent();
+                        var html = '';
+                        $.post('company/product/fr_manage', {pageNo: num, pageSize: 5, type: 2,
+                            subTypeStr: $('.subType').val()}, function (data) {
+                            $.each(data.result, function (i, m) {
+                                html += '<a href="gscp2.html?id=' + m.id + '" target="_blank"><li><img src="' + m.picName + '"><div class="sio"><h3 style=" font-weight:bold; margin-top:30px"><span style=" border:1px #101011 solid; width:100px; height:32px; display:inline-block; font-size:16px; line-height:32px; text-align:center; margin-right:10px">' + m.subTypeString + '</span><tt class="tt">' + m.name + '</tt></h3><p>' + m.content + '</p></div></li></a>'
+                            })
+                            $(".gscp_p_ul").html(html);
+                            $('p').addClass("cut");
+                            cut(".cut", 80);
+                            cut(".tt", 15);
+                            $(".sio").find("img").remove();
+                        })
+                    }
+                })
+            })
+        });
+
+    </script>
+</div>
+</body>
+</html>
+
+

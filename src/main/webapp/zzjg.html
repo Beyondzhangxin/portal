@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>组织机构</title>
+<!-- <script src="js/jquery2.0.js"></script> -->
+<script src="js/jquery-1.8.3.min.js"></script>
+<!-- <script src="js/bootstrap.js"></script> -->
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<script src="js/pagination/jquery.pagination.js"></script>
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+<style>
+.navbar{ background-color:#FFF !important}
+.contanter{ width:80%; margin:auto;}
+</style>
+</head>
+
+<body style=" background-image:url(images/images/bg.png); width:100%; height:100%">
+<h2 style="border-bottom:1px solid #666; line-height:50px">组织机构<span style=" font-size:14px; margin-left:10px"></h2>
+<div class="zzjgImg" style="text-align:center"></div>
+<script>
+function zzjgImg() {
+   $.ajax({
+       type: 'post',
+       url: 'company/organize/fr_manage',
+       dataType: "text", 
+       success: function (data) {
+    	 var  html='<img style="max-width:100%;margin-top:20px;" src="'+data+'">';
+    	   $('.zzjgImg').html(html)
+       },
+       err: function (data) {
+           alert(data.message);
+       }
+   })
+}
+zzjgImg();
+</script>
+</body>
+</html>

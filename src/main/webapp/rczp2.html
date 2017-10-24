@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>人才招聘详情</title>
+<script src="js/jquery2.0.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/main.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<style>
+.navbar{ background-color:#FFF !important}
+.contanter{ width:80%; margin:auto;}
+.gsjj{ width:80%;  float:left}
+.jsiu p{ clear:both; line-height:30px}
+.koj img{ float:left; margin-right:5px; margin-top:7px}
+.koj div{ float:left}
+.koj h5{ float:left}
+
+.img_contant{ width:30%; margin-left:70px; float:left; margin-top:20px}
+.img_contant img{ width:100%;}
+.img_contant h4{ text-align:center}
+
+.jsiu p{ margin-left:20px;word-wrap:break-word; word-break:normal;width:86%}
+td{padding:0 5px;}
+</style>
+</head>
+
+<body style=" background-image:url(images/images/bg.png); width:100%; height:100%">
+<nav class="navbar navbar-default" role="navigation" style="padding-top:10px ; padding-bottom:10px">
+	<div class="container-fluid"> 
+	<div class="navbar-header">
+		<img style=" margin-left:2%" src="images/logo.jpg">
+	</div>
+	<div id="myexample" style=" font-size:16px; ">
+	</div>
+	</div>	
+</nav>
+<div class="contanter">
+<div class="gsjj">
+	<h2><span class="job">java软件工程师</span><span style=" font-size:16px; margin:0 5px" class="creatorName">作者</span><span style="font-size:16px;margin:0 5px;" class="createTime">2017-08-20</span></h2>
+    <h4 style=" margin-top:20px">职位职能:<span class="jobFunction">互联网软件开发工程师&nbsp;&nbsp;软件工程师</span></h4>
+    <div class="jsiu">
+        
+      <div class="koj">
+            <img src="images/images/icon.png">
+            <h5>职位简介</h5>
+            <div style=" width:700px; height:1px; background-color:#777777; margin-top:20px;  margin-left:5px"></div>
+        </div>
+      
+	</div>
+    <table width="800" height="80" border="2" cellpadding="0" cellspacing="0" style=" text-align:center; position:absolute; top:270px; left:10% ">
+             <tr>
+               <td height="40" width="120px" style="background-color:#e4eef8">工作地点 </td>
+               <td class="workPlace"> 南京</td>
+               <td style="background-color:#e4eef8" width="120px" >招聘人数 </td>
+               <td class="hireNumber">5人 </td>
+               <td style="background-color:#e4eef8" width="120px" >工作年限 </td>
+               <td class="workYear">一年以上 </td>
+             </tr> 
+             <tr>
+               <td style="background-color:#e4eef8" height="40">语言要求 </td>
+               <td class="language"> 英语 良好</td>
+               <td style="background-color:#e4eef8">学历 </td>
+               <td class="record"> 本科</td>
+               <td style="background-color:#e4eef8"> 薪水范围</td>
+               <td class="salary">面议 </td>
+             </tr> 
+    	</table>
+    <div class="jsiu" style=" margin-top:176px">
+        
+      <div class="koj">
+            <img src="images/images/icon.png">
+            <h5>工作职责</h5>
+            <div style=" width:730px; height:1px; background-color:#777777; margin-top:20px;  margin-left:5px"></div>
+        </div>
+      	<p class="jobResponse">1、java产品和项目的设计和开发；</p>
+	</div>
+    <div class="jsiu">
+        
+      <div class="koj">
+            <img src="images/images/icon.png">
+            <h5>任职条件</h5>
+            <div style=" width:730px; height:1px; background-color:#777777; margin-top:20px;  margin-left:5px"></div>
+        </div>
+      	<p class="qualifications">1.专科以上学历，计算机相关专业毕业，有较强的自学能力和团队合作能力。</p>
+	</div>
+
+</div>
+<div style=" width:347px; height:123px; border:1px solid #b4b4b4; position:absolute;right:10%">
+	<h5 style=" margin-left:20px; margin-top:20px">将简历发送至<span style="font-size:20px;font-weight:bold;margin-left:30px;" class="email">hr@ccfsoft.com,</span></h5>
+    <h5 style=" margin-left:20px">邮件标题请注明&nbsp;&nbsp;&nbsp;<span style="font-size:20px;font-weight:bold; color:red" class="remark">学校_应聘职位_姓名</span></h5>
+</div>
+<script>
+	function rczp_details(){
+		var detailsUrl=window.location.search;
+		var id = detailsUrl.substring(detailsUrl.lastIndexOf('=')+1, detailsUrl.length); 
+		$.ajax({
+			type:'post',
+			url:'company/recruit/fr_detail',
+			dataType:"json",
+			data:{id:id},
+			success:function(data){	
+				$('.creatorName').text(data.creator.name)
+				$('.email').text(data.toEmail)
+				$('.remark').text(data.remark)
+				$('.job').text(data.job)
+				$('.createTime').text(data.createTime)
+				$('.jobFunction').text(data.jobFunction)
+				$('.workPlace').text(data.workPlace)
+				$('.hireNumber').text(data.hireNumber)
+				$('.workYear').text(data.workYear)
+				$('.language').text(data.language)
+				$('.record').text(data.record)
+				$('.salary').text(data.salary)
+				$('.jobResponse').text(data.jobResponse)
+				$('.qualifications').text(data.qualifications)
+				cutTime('.createTime',10);
+			},
+			err:function(data){
+				alert(data.message);
+			}
+		})
+	}
+	rczp_details();
+</script>
+</body>
+</html>

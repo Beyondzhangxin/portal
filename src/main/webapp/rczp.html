@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>人才招聘</title>
+<script src="js/jquery2.0.js"></script>
+<script src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<script src="js/pagination/jquery.pagination.js"></script>
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+<style>
+.navbar{ background-color:#FFF !important}
+.contanter{ width:80%; margin:auto;}
+.gsjj{ width:50%;  float:left}
+a,a:visited,a:active,a:link{
+	 text-decoration:none;
+	 color:black;
+}
+a:hover{text-decoration:none;color:#1C3E7E}
+.jsiu p{ clear:both; line-height:30px}
+.koj img{ float:left; margin-right:5px; margin-top:7px}
+.koj div{ float:left}
+.koj h5{ float:left}
+
+.img_contant{ width:30%; margin-left:70px; float:left; margin-top:20px}
+.img_contant img{ width:100%;}
+.img_contant h4{ text-align:center}
+
+.UL{ width:100%;margin:auto}
+.UL >li{ width:45%; background-color:#FFF; height:150px ; float:left; margin-left:20px;  margin-top:40px}
+.UL li{ list-style:none;}
+.UL li ul{ width:80%}
+.UL li ul li p{ width:100%;position:relative;
+    line-height:1.4em;
+    /* 3 times the line-height to show 3 lines */
+    height:4.2em;
+    overflow:hidden;
+    margin-top:15px;
+    }
+    #Validform_msg,.Validform_title,.Validform_close{
+	display:none;
+}
+p{
+margin:6px 0;
+word-break: break-all; word-wrap:break-word; }
+    /* .UL li ul li p::after {
+    content:"...";
+    font-weight:bold;
+    position:absolute;
+    bottom:0;
+    right:0;
+    padding:0 20px 1px 45px;
+} */
+/* .UL li ul li p{ width:100%;overflow : hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 4;
+-webkit-box-orient: vertical;} */
+.UL li img{ margin-left:-83px}
+</style>
+</head>
+
+<body style=" background-image:url(images/images/bg.png); width:100%; height:100%">
+
+<h2 style="border-bottom:1px solid #666; line-height:50px">人才招聘<span style=" font-size:14px; margin-left:10px">共<span class="totalCount">231</span>条记录</span></h2>
+<ul class="UL">
+	<!-- <li>
+    	
+        <ul style=" float:left">
+        	<li>
+            	<h3>行政管理<span style=" font-size:14px; margin-left:10px">2017-08-25</span></h3>
+                <p>简介简介简介简介简介简介简介简介简介简介简介简介简介简介介简介简介简介简介简介简介简介简介简介</p>
+            </li>
+        </ul>
+    </li> -->
+  
+</ul>
+	<br class="clearfix"/>
+	<div class="M-ddd"></div>
+<script>
+/*人才招聘列表 */
+function messageList() {
+	 pageNo = 1;
+	 pageSize=6;
+   $.ajax({
+       type: 'post',
+       url: 'company/recruit/fr_manage',
+       dataType: "json",
+       data: {pageNo:pageNo,pageSize:pageSize},
+       success: function (data) {
+       	var totalData=data.totalCount;
+       	var showData=data.pageSize;
+        $('.totalCount').text(totalData);
+        console.log(data.result[1])
+       	var html = '';
+			 $.each(data.result,function(i,m){
+				html+='	 <li>';
+				html+='    <ul style=" float:left">';
+				html+='    	<li><a href="rczp2.html?id='+m.id+'" target="_blank">';
+				html+='        	<h3><span class="rczp_job">'+m.job+'</span><span class="rczp_time" style=" font-size:14px; margin-left:10px">'+m.createTime+'</span></h3>';
+				html+='             <p class="jobResponse">'+m.jobResponse+'</p>';
+				html+='    </a>     </li>';
+				html+='       </ul>';
+				html+='    </li>';
+			}) 
+			$(".UL").html(html);	
+			 cut(".jobResponse",60);
+			 cut(".rczp_job",8);
+			 cutTime(".rczp_time",10);
+			 $('.M-ddd').pagination({
+					 totalData	:totalData,
+					 showData:showData,
+					coping:true,
+					homePage:'首页',
+					endPage:'末页',
+					prevContent:'«',
+					nextContent:'»',
+				    callback:function(api){
+				    	 var data = {pageNo: api.getCurrent(),pageSize:pageSize};
+				    	        $.post('company/recruit/fr_manage',data,function(json){
+						    	        	var html = '';
+						   				 $.each(json.result,function(i,m){
+						   					html+='	 <li>';
+						   					html+='    <ul style=" float:left">';
+						   					html+='    	<li><a href="rczp2.html?id='+m.id+'" target="_blank">';
+						   					html+='        	<h3><span class="rczp_job">'+m.job+'</span><span class="rczp_time" style=" font-size:14px; margin-left:10px">'+m.createTime+'</span></h3>';
+						   					html+='             <p class="jobResponse">'+m.jobResponse+'</p>';
+						   					html+='    </a>     </li>';
+						   					html+='       </ul>';
+						   					html+='    </li>';
+						   				}) 
+						   				$(".UL").html(html);	
+						   				 cut(".jobResponse",60);
+						   				 cut(".rczp_job",8);
+						   				 cutTime(".rczp_time",10);
+				    	        });
+				    }
+				})
+			
+       },
+       err: function (data) {
+           alert(data.message);
+       }
+   })
+}
+messageList();
+</script>
+</body>
+</html>

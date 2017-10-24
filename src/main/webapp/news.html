@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>公司新闻</title>
+    <script src="js/jquery2.0.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+    <style>
+        .navbar { background-color: #FFF !important }
+
+        .contanter { width: 80%; margin: auto; }
+
+        .gsjj { width: 50%; float: left }
+
+        .jsiu p { clear: both; line-height: 30px }
+
+        .koj img { float: left; margin-right: 5px; margin-top: 7px }
+
+        .koj div { float: left }
+
+        .koj h5 { float: left }
+
+        #myCarousel { width: 40%; float: left; margin-top: 10px }
+
+        .carousel-inner img { width: 100%; height: 300px }
+
+        li { list-style: none; }
+
+        .gs_news { float: left; width: 56%; margin-left: 40px }
+
+        .gs_news img { float: left; margin-top: 7px; margin-right: 5px; }
+
+        .gs_news h5 { float: left }
+
+        .gs_news div { float: left; width: 79%; height: 1px; background-color: #666; margin: 17px 5px 0 5px }
+
+        .gs_news > a { float: left; margin-top: 7px; }
+
+        .gs_news ul { clear: both; padding-left: 0; }
+
+        .jj_news { width: 56%; margin-left: 0px; clear: both; margin-top: 335px; float: left }
+
+        .jj_news img { float: left; margin-top: 7px; margin-right: 5px; }
+
+        .jj_news h5 { float: left }
+
+        .x { float: left; width: 79%; height: 1px; background-color: #666; margin: 17px 5px 0 5px }
+
+        .jj_news > a { float: left; margin-top: 7px; }
+
+        .jj_news ul { clear: both; padding-left: 0 }
+
+        .jj_news ul li { clear: both; height: 130px; }
+
+        .jj_news ul li img { float: left; width: 200px; height: 130px }
+
+        .jj_news ul li div { float: left }
+
+        .sio { width: 60%; margin-left: 10px }
+
+        .hy_news { float: left; width: 40%; margin-left: 40px }
+
+        .hy_news > img { float: left; margin-top: 7px; margin-right: 5px; }
+
+        .hy_news h5 { float: left }
+
+        .hy_news div { float: left; width: 71%; height: 1px; background-color: #666; margin: 17px 5px 0 5px }
+
+        .hy_news > a { float: left; margin-top: 7px; }
+
+        .hy_news ul { clear: both; padding-left: 0; }
+
+        .hy_news ul li { font-size: 16px; margin-top: 10px; }
+
+        .news_content_title a { display: block; color: #333 }
+
+        .news_content_title a:hover { text-decoration: none }
+
+        .media_content_title a, .media_img a { color: #333 }
+
+        .media_content_title a:hover, .media_img a:hover, .news_content_title a:hover { color: #1C3E7E }
+
+        .media_img img {
+            max-width: 100%;
+            }
+
+        p img { display: none }
+
+        #myCarousel span {
+            display: inline-block; background-color: rgba(119, 119, 119, 0.5)
+            }
+
+        /*   tt {
+              font-weight: bold;
+              font-family: inherit;
+              } */
+        a, a:visited, a:active, a:link {
+            text-decoration: none;
+            color: black;
+            }
+    </style>
+</head>
+
+<body style=" background-image:url(images/images/bg.png); width:100%; height:100%">
+<div id="myCarousel" class="carousel slide">
+
+    <!-- 轮播（Carousel）指标 -->
+
+    <ol class="carousel-indicators">
+
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+
+    </ol>
+
+    <!-- 轮播（Carousel）项目 -->
+
+    <div class="carousel-inner">
+
+        <div class="item active First">
+
+            <!--  <img src="images/lunbo.png" alt="First slide" class="">  -->
+            <!-- <p>wrergfgt</p> -->
+        </div>
+
+        <div class="item Second">
+
+            <!--    <img src="images/lunbo.png" alt="Second slide" class="">  -->
+            <!-- <p></p> -->
+        </div>
+
+        <div class="item Third">
+
+            <!--  <img src="images/lunbo.png" alt="Third slide" class="">  -->
+            <!-- <p></p> -->
+        </div>
+
+    </div>
+
+    <!-- 轮播（Carousel）导航 -->
+
+    <a class="carousel-control left" href="#myCarousel"
+
+       data-slide="prev">&lsaquo;</a>
+
+    <a class="carousel-control right" href="#myCarousel"
+
+       data-slide="next">&rsaquo;</a>
+</div>
+
+​
+<div class="gs_news">
+
+    <img src="images/images/icon.png">
+    <h5>公司新闻</h5>
+    <div></div>
+    <a style="cursor:pointer" onClick="javascript:openUrl('newsMore.html','contanter')">更多>></a>
+
+    <ul class="news_content_title">
+        <!--   <li>
+              <h2>中国航天公司集团公司<span style="font-size:16px; margin-left:10px">2017-07-25</span></h2>
+              <p>中国航天科工集团公司拟解决夫妻 航天云网科技发展有限责任公司 航天云网科技发展有限责任公司</p>
+          </li>
+          <li>
+              <h2>中国航天科工信息技术研究院本部<span style="font-size:16px; margin-left:10px">2017-07-25</span></h2>
+              <p>中国航天科工集团公司拟解决夫妻 航天云网科技发展有限责任公司 航天云网科技发展有限责任公司 中国航天科工集团公司拟解决夫妻 航天云网科技中国航天科工信息技术研究院本部 有限责任公中国航天科工信息技术研究院本部</p>
+          </li> -->
+    </ul>
+</div>
+
+<div>
+    <div class="jj_news" style=" margin-top:100px">
+        <img src="images/images/icon.png">
+        <h5>媒体聚焦</h5>
+        <div class="x"></div>
+        <a style="cursor:pointer" onClick="javascript:openUrl('newsMore.html','contanter','news2')">更多>></a>
+        <ul class="media_content_title">
+        </ul>
+    </div>
+
+    <div class="hy_news" style=" margin-top:100px">
+
+        <img src="images/images/icon.png">
+        <h5>行业新闻</h5>
+        <div class="x"></div>
+        <a style="cursor:pointer" onClick="javascript:openUrl('newsMore.html','contanter','news3')">更多>></a>
+
+        <ul class="media_img">
+        </ul>
+    </div>
+</div>
+<script>
+    $('#myCarousel').carousel({
+        interval: 2000
+    })
+    /* 公司新闻 */
+    $.post('company/news/fr_manage', {pageNo: 1, pageSize: 2, type: 1}, function (data) {
+        var html = '';
+        $.each(data.result, function (i, m) {
+            html += '<a href="news2.html?id=' + m.id + '" target="_blank"> <li><h3><tt class="tta">' + m.title + '</tt><span style="font-size:16px; margin-left:10px" class="createTime">' + m.createTime + '</span></h3> <p class="cut">' + delHtmlTag(m.content) + '</p></li></a>'
+
+        })
+        $(".news_content_title").html(html);
+        cut(".news_content_title .cut", 100);
+        cut(".tta", 15);
+        cutTime(".createTime", 10)
+    })
+    $.post('company/news/fr_manage', {pageSize: 3, iscover: 1}, function (data) {
+        var img0 = '<a href="news2.html?id=' + data.result[0].id + '" target="_blank"><img src="' + data.result[0].src + '"/><div class="carousel-caption" style="bottom:-29px">' + data.result[0].title + '</div><span class="asss" style="display:inline-block;background-color:rgba(119, 119, 119, 0.5)"></span></a>'
+        $(".First").append(img0);
+        var img1 = '<a href="news2.html?id=' + data.result[1].id + '" target="_blank"><img src="' + data.result[1].src + '"/><div class="carousel-caption" style="bottom:-29px">' + data.result[1].title + '</div><span class="asss" style="display:inline-block;background-color:rgba(119, 119, 119, 0.5)"></span></a>'
+        $(".Second").append(img1);
+        var img2 = '<a href="news2.html?id=' + data.result[2].id + '" target="_blank"><img src="' + data.result[2].src + '"/><div class="carousel-caption" style="bottom:-29px">' + data.result[2].title + '</div><span class="asss" style="display:inline-block;background-color:rgba(119, 119, 119, 0.5)"></span></a>'
+        $(".Third").append(img2);
+        cut(".carousel-caption", 15)
+    })
+    //媒体聚焦左侧
+    $.post('company/news/fr_manage', {pageNo: 1, pageSize: 3, type: 2}, function (data) {
+        var html = '';
+        $.each(data.result, function (i, m) {
+            /*
+             html += '<a href="news2.html?id=' + m.id + '" target="_blank"> <li><img src="' + m.src + '"><div class="sio"><h3><tt class="tt">' + m.title + '<tt><span style="font-size:16px; margin-left:10px" class="createTime">' + m.createTime + '</span></h3> <p class="cut">' + m.content + '</p></div></li></a>'
+             */
+            if (m.src) {
+                html += '<a href="news2.html?id=' + m.id + '" target="_blank"> <li><img src="' + m.src + '"><div class="sio"><h3><tt class="ttn">' + m.title + '</tt><span style="font-size:16px; margin-left:10px" class="createTime">' + m.createTime + '</span></h3> <p class="cut">' + delHtmlTag(m.content) + '</p></div></li></a>'
+            } else {
+                html += '<a href="news2.html?id=' + m.id + '" target="_blank"> <li><div class="sio"><h3><tt class="ttn">' + m.title + '</tt><span style="font-size:16px; margin-left:10px" class="createTime">' + m.createTime + '</span></h3> <p class="cut">' + delHtmlTag(m.content) + '</p></div></li></a>'
+
+            }
+        })
+        $(".media_content_title").html(html);
+        cut(".media_content_title .cut", 50);
+        cut(".ttn", 20);
+        cutTime(".createTime", 10);
+    })
+    //媒体聚焦右侧
+    $.post('company/news/fr_manage', {pageNo: 1, pageSize: 6, type: 3}, function (data) {
+        var html = '';
+        $.each(data.result, function (i, m) {
+            html += '<a href="news2.html?id=' + m.id + '" target="_blank"> <li><span class="tt">' + m.title + '</span>&nbsp;&nbsp;<span class="createTime">' + m.createTime + '</span></li></a>';
+        })
+        $(".media_img").html(html);
+        cut(".tt", 15);
+        cutTime(".createTime", 10)
+        imgUrl = '<li><img src="' + data.result[0].src + '"></li>'
+        $(".media_img").prepend(imgUrl);
+    })
+
+</script>
+</body>
+</html>
+
+

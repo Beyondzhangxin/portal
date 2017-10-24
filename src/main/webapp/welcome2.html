@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>航天科工智慧产业发展有限公司</title>
+    <script src="js/jquery2.0.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+        $(function () {
+            if ($(document).height() <= $(window).height()) {
+                _windowHeight = document.body.clientHeight;
+            } else {//alert($(window).height());
+                _windowHeight = $(document).height();
+            }
+            ;
+            /*   $('.img_bg').css({'height': $(window).height()}); */
+            $('.img_bg').css({'height': _windowHeight});
+        });
+    </script>
+    <style>
+    </style>
+</head>
+<body>
+<!-- 公司新闻 -->
+<div class="img_bg index_gsxw">
+    <div class="gsxw_content">
+        <h2>公司新闻</h2>
+        <ul class="index_news_ul">
+            <!--<li ><a href="news2.html?id=sadas" target="_blank">title</a></li>
+            <li>公司新闻1</li>
+            <li>公司新闻1</li>-->
+        </ul>
+        <div id="myCarousel" class="carousel slide">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                <div class="item active First">
+                </div>
+                <div class="item Second">
+                </div>
+                <div class="item Third">
+                </div>
+            </div>
+            <!-- 轮播（Carousel）导航 -->
+            <a class="carousel-control left" href="#myCarousel"
+               data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#myCarousel"
+               data-slide="next">&rsaquo;</a>
+        </div>
+    </div>
+</div>
+</div>
+<!-- 公司概况 -->
+<div class="img_bg index_gsgk">
+    <div class="gsgk_content">
+        <h2>
+            公司概况
+        </h2>
+        <p></p>
+        <ul>
+            <li><a style="cursor:pointer" onClick="javascript:openUrl('gsjj.html','contanter')">
+                <img src="images/gsjj.png">
+                <h4>公司简介</h4></a>
+            </li>
+            <li><a style="cursor:pointer" onClick="javascript:openUrl('gsld.html','contanter')">
+                <img src="images/gsld.png">
+                <h4>公司领导</h4></a>
+            </li>
+            <li><a style="cursor:pointer" onClick="javascript:openUrl('zzjg.html','contanter')">
+                <img src="images/zzjg.png">
+                <h4>组织机构</h4></a>
+            </li>
+            <li><a style="cursor:pointer" onClick="javascript:openUrl('qywh.html','contanter')">
+                <img src="images/qywh.png">
+                <h4>企业文化</h4></a>
+            </li>
+            <li><a style="cursor:pointer" onClick="javascript:openUrl('ryzz.html','contanter')">
+                <img src="images/ryzz.png">
+                <h4>企业荣誉与资质</h4></a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<script>
+    $.getJSON('company/organize/companyInfo', function (data) {
+        $('.gsgk_content p').html(data.overview);
+    })
+</script>
+<!-- 公司产品 -->
+<div class="img_bg index_gscp">
+    <div class="gscp_content">
+        <h2>
+            公司产品
+        </h2>
+        <p>航天科工智慧产业发展有限公司，是由中国航天科工集团公司及其下属单位、北京金融街投资有限公司、北京金融街资本运营中心共同出资 10 亿元联合组建的国有全资高科技企业，是航天科工智慧产业的抓总平台。。
+        </p>
+        <ul>
+            <a style="cursor:pointer" onClick="javascript:openUrl('gscp.html','contanter','A_DSG')">
+                <li>
+                    <img src="images/dsj.png">
+                    <h4>大数据</h4>
+                </li>
+            </a>
+            <a style="cursor:pointer" onClick="javascript:openUrl('gscp.html','contanter','B_ZHAJ')">
+                <li>
+                    <img src="images/zhaj.png">
+                    <h4>智慧安监</h4>
+                </li>
+            </a>
+            <a style="cursor:pointer" onClick="javascript:openUrl('gscp.html','contanter','C_ZHHB')">
+
+                <li>
+                    <img src="images/zhhb.png">
+                    <h4>智慧环保</h4>
+                </li>
+            </a>
+            <a style="cursor:pointer" onClick="javascript:openUrl('gscp.html','contanter','D_ZHJT')">
+                <li>
+                    <img src="images/zhjt.png">
+                    <h4>智慧交通</h4>
+                </li>
+            </a>
+            <a style="cursor:pointer" onClick="javascript:openUrl('gscp.html','contanter','E_ZHJW')">
+                <li>
+                    <img src="images/zhjw.png">
+                    <h4>智慧检务</h4>
+                </li>
+            </a>
+        </ul>
+    </div>
+</div>
+<script>
+    $.getJSON('company/product/fr_overview', function (data) {
+        $('.gscp_content p').html(data.content);
+    })
+</script>
+<!-- 人才招聘 -->
+<div class="img_bg index_rczp" style="height:426px;">
+    <div class="rczp_content">
+        <h2>人才招聘</h2>
+        <ul class="index_rczp_ul">
+        </ul>
+    </div>
+  <div class="rczp_content_a">
+        <a href="">返回顶部</a>
+        <a style="cursor:pointer" class="footer_jjfa" onClick="javascript:openUrl('jjfa.html','contanter')">解决方案</a>
+        <a style="cursor:pointer" class="footer_gsgk" onClick="javascript:openUrl('gsjj.html','contanter')">公司概况</a>
+        <a style="cursor:pointer" class="footer_rczp" onClick="javascript:openUrl('rczp.html','contanter')">人才招聘</a>
+        <a style="cursor:pointer" class="footer_news" onClick="javascript:openUrl('news.html','contanter')">公司新闻</a>
+        <a style="cursor:pointer" class="footer_lylb" onClick="javascript:openUrl('lylb.html','contanter')">客户留言</a>
+        <a style="cursor:pointer" class="footer_gscp" onClick="javascript:openUrl('gscp.html','contanter')">公司产品</a>
+        <a style="cursor:pointer" class="footer_about" onClick="javascript:openUrl('about.html','contanter')">联系我们</a>
+    </div>
+    <div class="rczp_content_wechat">
+    <p style="text-align:center;color:#fff;">官方微博</p>
+    	<img src="images/wechat.png" style="width:100px;">
+    </div>
+    <div style="width:90%;background:#fff;background: #fff;height: 1px;position: absolute;bottom: 8%;
+    left:5% ;"></div>
+    <div style=" position: absolute;bottom: -5%;left: 5%;">
+    	<img src="images/logo222.png" style="width:310px">
+    </div>
+    <div class="company_info_bottom" style="position: absolute;bottom: -5%; color: #fff; right: 5%;">
+        <p style="font-size: 14px;text-align: right">
+            Copyright@2016版权所有 中国航天科工集团公司 备案序号：京ICP备05067351号 京公网安备11040102100081号
+        </p>
+        <p style="font-size: 14px;text-align: right">
+            地址：北京市海淀区永定路52号 邮编：100854
+        </p>
+    </div> 
+</div>
+<div class="index_footer"></div>
+<script>
+    $('.index_gsgk li').click(function () {
+        $('.tabtitle').eq(1).addClass("active").siblings().removeClass("active")
+    })
+    $('.footer_gsgk').click(function () {
+        $('.tabtitle').eq(1).addClass("active").siblings().removeClass("active")
+    })
+    $('.footer_jjfa').click(function () {
+        $('.tabtitle').eq(4).addClass("active").siblings().removeClass("active")
+    })
+    $('.footer_rczp').click(function () {
+        $('.tabtitle').eq(5).addClass("active").siblings().removeClass("active")
+    })
+    $('.footer_news').click(function () {
+        $('.tabtitle').eq(2).addClass("active").siblings().removeClass("active")
+    })
+    $('.footer_lylb').click(function () {
+        $('.tabtitle').eq(6).addClass("active").siblings().removeClass("active")
+    })
+    $('.footer_gscp').click(function () {
+        $('.tabtitle').eq(3).addClass("active").siblings().removeClass("active")
+    })
+    $('.footer_about').click(function () {
+        $('.tabtitle').eq(7).addClass("active").siblings().removeClass("active")
+    })
+
+    $.post('company/recruit/fr_manage', {pageNo: 1, pageSize: 6, type: 2}, function (data) {
+        console.log(data)
+        var html = '';
+        $.each(data.result, function (i, m) {
+            html += '    	<li><a href="rczp2.html?id=' + m.id + '" target="_blank">' + m.job  + '</a></li>'
+        })
+        $(".index_rczp_ul").html(html);
+        cutTime('.index_job_time', 10)
+    })
+    $('#myCarousel').carousel({
+        interval: 2000
+    })
+    
+    $(window).resize(function(){
+    location.reload()
+});
+</script>
+</div>
+<script>
+    $(function () {
+        $.post('company/news/fr_manage', {pageNo: 1, pageSize: 3}, function (data) {
+            console.log(data)
+            var html = '';
+            $.each(data.result, function (i, m) {
+                html += '<li><a href="news2.html?id=' + m.id + '" target="_blank"><span class="index_news_title">' + m.title + '</span></a></li>';
+            })
+            $('.gsxw_content ul').html(html);
+            cut(".index_news_title", 15)
+            cutTime(".index_news_time", 10)
+        });
+        $.post('company/news/fr_manage', {pageSize: 3, iscover: 1}, function (data) {
+            var img0 = '<a href="news2.html?id=' + data.result[0].id + '" target="_blank"><img src="' + data.result[0].src + '"/><div class="carousel-caption caption_text" style="bottom:-29px;">' + data.result[0].title + '</div><span class="asss" style="display:inline-block;background-color:rgba(119, 119, 119, 0.5)"></span></a>'
+            $(".First").append(img0);
+            cut(".carousel-caption", 15)
+            var img1 = '<a href="news2.html?id=' + data.result[1].id + '" target="_blank"><img src="' + data.result[1].src + '"/><div class="carousel-caption caption_text" style="bottom:-29px;">' + data.result[1].title + '</div><span class="asss" style="display:inline-block;background-color:rgba(119, 119, 119, 0.5)"></span></a>'
+            $(".Second").append(img1);
+            cut(".carousel-caption", 15)
+            var img2 = '<a href="news2.html?id=' + data.result[1].id + '" target="_blank"><img src="' + data.result[1].src + '"/><div class="carousel-caption caption_text" style="bottom:-29px;">' + data.result[2].title + '</div><span class="asss" style="display:inline-block;background-color:rgba(119, 119, 119, 0.5)"></span></a>'
+            $(".Third").append(img2);
+            cut(".carousel-caption", 15)
+        })
+
+    });
+</script>
+</body>
+</html>

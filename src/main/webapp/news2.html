@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>公司新闻详情页</title>
+<script src="js/jquery2.0.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/main.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<style>
+.navbar{ background-color:#FFF !important}
+.contanter{ width:80%; margin:auto;}
+.gsjj{ width:50%;  float:left}
+.jsiu p{ clear:both; line-height:30px}
+.koj{ height:40px}
+.koj img{ float:left; margin-right:5px; margin-top:7px}
+.koj div{ float:left}
+.koj h5{ float:left}
+
+.img_contant{ width:30%; margin-left:70px; float:left; margin-top:20px}
+.img_contant img{ width:100%;}
+.img_contant h4{ text-align:center}
+p{
+	word-wrap:break-word; 
+}
+.jsiu p{ margin-left:20px; width:90%}
+p img{
+max-width:100%;margin:auto}
+</style>
+</head>
+
+<body style=" background-image:url(images/images/bg.png); width:100%; height:100%">
+<nav class="navbar navbar-default" role="navigation" style="padding-top:10px ; padding-bottom:10px">
+	<div class="container-fluid"> 
+	<div class="navbar-header">
+		<img style=" margin-left:2%" src="images/logo.jpg">
+	</div>
+	<div id="myexample" style=" font-size:16px; ">
+	</div>
+	</div>	
+</nav>
+<div class="contanter">
+<h2>
+<span class="title"></span>
+<span style="font-size:16px;margin:0 5px;" class="createTime">2017-08-20</span>
+</h2>
+<div class="newsD">
+
+</div>
+</div>
+<script>
+	var detailsUrl=window.location.search;
+	var id = detailsUrl.substring(detailsUrl.lastIndexOf('=')+1, detailsUrl.length); 
+	$.post('company/news/fr_detail',{id:id},function(data){
+		$(".title").html(data.title)
+		$(".createTime").html(data.createTime)
+		$(".newsD").html(data.content)
+		 cutTime(".createTime",10)
+	})
+</script>
+</body>
+</html>

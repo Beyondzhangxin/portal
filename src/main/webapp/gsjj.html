@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>公司简介</title>
+<script src="js/jquery2.0.js"></script>
+<script src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<style>
+	.navbar{ background-color:#FFF !important}
+	.contanter{ width:80%; margin:auto;}
+	 p{ word-wrap:break-word; word-break:normal; }
+	img{max-width:100%}
+	.img_contant{ width:30%; margin-left:70px; float:left; margin-top:20px}
+	.img_contant img{ width:100%;}
+	.img_contant h4{ text-align:center}
+</style>
+</head>
+<body style=" background-image:url(images/images/bg.png); width:100%; height:100%">
+<h2 style="border-bottom:1px solid #666; line-height:50px">公司简介<span style=" font-size:14px; margin-left:10px"></h2>
+<div class="gsjjList" style="width:100%"></div>
+<script>
+function gsjjList() {
+	   $.ajax({
+	       type: 'post',
+	       url: 'common/fr_manage',
+	       dataType: "json", 
+	       success: function (data) {
+	    	   var  html=data.content;
+	    	   $('.gsjjList').html(html)
+	       },
+	       err: function (data) {
+	           alert(data.message);
+	       }
+	   })
+	}
+gsjjList();
+</script>
+</body>
+</html>

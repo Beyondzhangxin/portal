@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>更多新闻</title>
+    <script src="js/jquery2.0.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="css/main.css" type="text/css" />
+    <script src="js/pagination/jquery.pagination.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        .navbar { background-color: #FFF !important }
+
+        .contanter { width: 80%; margin: auto; }
+
+        .gsjj { width: 50%; float: left }
+
+        .jsiu p { clear: both; line-height: 30px }
+
+        .koj img { float: left; margin-right: 5px; margin-top: 7px }
+
+        .koj div { float: left }
+
+        .koj h5 { float: left }
+
+        li { list-style: none; }
+
+        .jj_news { width: 100%; margin-left: 0px; clear: both; margin-top: 33px; float: left }
+
+        .jj_news img { float: left; margin-top: 7px; margin-right: 5px; }
+
+        .jj_news h5 { float: left }
+
+        .newMore_message img, .mediaMore_message img ,.industryMore_message img{ width: 173px; height: 90px;
+            }
+
+        .x { float: left; width: 88%; height: 1px; background-color: #666; margin: 17px 5px 0 5px }
+
+        .jj_news > a { float: left; margin-top: 7px }
+
+        .jj_news ul { clear: both; }
+
+        .jj_news ul li { clear: both; height: 130px; }
+
+        .jj_news ul li img { float: left }
+
+        .jj_news ul li div { float: left }
+
+        .sio { width: 77%; margin-left: 10px; margin-top: -18px }
+
+        p img { display: none
+            }
+    </style>
+</head>
+
+<body style=" background-image:url(images/images/bg.png); width:100%; height:100%">
+<ul id="myTab" class="nav nav-tabs">
+    <li class="active"><a href="#home" data-toggle="tab">公司新闻</a></li>
+    <li class="messages_ac"><a href="#ios" data-toggle="tab">媒体聚焦</a></li>
+    <li class="dropdown"><a href="#industry" data-toggle="tab">行业新闻</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="home">
+        <div class="jj_news">
+            <img src="images/images/icon.png">
+            <h5>公司新闻</h5>
+            <div class="x"></div>
+            <ul class="newMore_message">
+            </ul>
+            <div class="new_pagination"></div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="ios">
+        <div class="jj_news">
+            <img src="images/images/icon.png">
+            <h5>媒体聚焦</h5>
+            <div class="x"></div>
+            <ul class="mediaMore_message">
+            </ul>
+            <div class="media_pagination"></div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="industry">
+        <div class="jj_news">
+            <img src="images/images/icon.png">
+            <h5>行业新闻</h5>
+            <div class="x"></div>
+            <ul class="industryMore_message">
+            </ul>
+            <div class="industry_pagination"></div>
+        </div>
+    </div>
+</div>
+<script>
+    $.post('company/news/fr_manage', {pageNo: 1, pageSize: 5, type: 1}, function (data) {
+        var html = '';
+        var totalData = data.totalCount;
+        var showData = data.pageSize;
+        $.each(data.result, function (i, m) {
+            html += '<a href="news2.html?id=' + m.id + '" target="_blank"> <li><img src="' + m.src + '"><div class="sio"><h3  style=" font-weight:bold"><tt class="ttn">' + m.title + '</tt><span style="font-size:16px; margin-left:10px" class="createTime">' + m.createTime + '</span></h3> <p class="cut">' + m.content + '</p></div></li></a>'
+        })
+        $(".newMore_message").html(html);
+        $('p').addClass("cut");
+        cut(".cut", 80);
+        cut(".ttn", 20);
+        cutTime(".createTime", 10)
+        $('.new_pagination').pagination({
+            totalData: totalData,
+            showData: showData,
+            coping: true,
+            homePage: '首页',
+            endPage: '末页',
+            prevContent: '«',
+            nextContent: '»',
+            callback: function (p) {
+                var num = p.getCurrent();
+                var html = '';
+                $.post('company/news/fr_manage', {pageNo: num, pageSize: 5, type: 1}, function (data) {
+                    $.each(data.result, function (i, m) {
+                        html += '<a href="news2.html?id=' + m.id + '" target="_blank"> <li><img src="' + m.src + '"><div class="sio"><h2  style=" font-weight:bold"><tt class="ttn">' + m.title + '</tt><span style="font-size:16px; margin-left:10px" class="createTime">' + m.createTime + '</span></h2> <p class="cut">' + m.content + '</p></div></li></a>'
+                    })
+                    $(".newMore_message").html(html);
+                    $('p').addClass("cut");
+                    cut(".cut", 80);
+                    cut(".ttn", 20);
+                    cutTime(".createTime", 10)
+                })
+            }
+        })
+    })
+    function eadio() {
+        $.post('company/news/fr_manage', {pageNo: 1, pageSize: 5, type: 2}, function (data) {
+            var html = '';
+            var totalData = data.totalCount;
+            var showData = data.pageSize;
+            $.each(data.result, function (i, m) {
+                html += '<a href="news2.html?id=' + m.id + '" target="_blank"> <li><img src="' + m.src + '"><div class="sio"><h3  style=" font-weight:bold"><tt class="ttn">' + m.title + '</tt><span style="font-size:16px; margin-left:10px" class="createTime">' + m.createTime + '</span></h3> <p class="cut">' + m.content + '</p></div></li></a>'
+            })
+            $(".mediaMore_message").html(html);
+            $('p').addClass("cut");
+            cut(".cut", 80);
+            cut(".ttn", 20);
+            cutTime(".createTime",10)
+            $('.media_pagination').pagination({
+                totalData: totalData,
+                showData: showData,
+                coping: true,
+                homePage: '首页',
+                endPage: '末页',
+                prevContent: '«',
+                nextContent: '»',
+                callback: function (p) {
+                    var num = p.getCurrent();
+                    var html = '';
+                    $.post('company/news/fr_manage', {pageNo: num, pageSize: 5, type: 2}, function (data) {
+                        $.each(data.result, function (i, m) {
+                            html += '<a href="news2.html?id=' + m.id + '" target="_blank"> <li><img src="' + m.src + '"><div class="sio"><h3  style=" font-weight:bold"><tt class="ttn">' + m.title + '</tt><span style="font-size:16px; margin-left:10px" class="createTime">' + m.createTime + '</span></h3> <p class="cut">' + m.content + '</p></div></li></a>'
+                        })
+                        $(".mediaMore_message").html(html);
+                        $('p').addClass("cut");
+                        cut(".cut", 80);
+                        cut(".ttn", 20);
+                        cutTime(".createTime", 10)
+                    })
+                }
+            })
+        })
+    }
+     eadio() 
+    $.post('company/news/fr_manage', {pageNo: 1, pageSize: 5, type: 3}, function (data) {
+        var html = '';
+        var totalData = data.totalCount;
+        var showData = data.pageSize;
+        $.each(data.result, function (i, m) {
+            html += '<a href="news2.html?id=' + m.id + '" target="_blank"> <li><img src="' + m.src + '"><div class="sio"><h3  style=" font-weight:bold"><tt class="ttn">' + m.title + '</tt><span style="font-size:16px; margin-left:10px" class="createTime">' + m.createTime + '</span></h3> <p class="cut">' + m.content + '</p></div></li></a>'
+        })
+        $(".industryMore_message").html(html);
+        $('p').addClass("cut");
+        cut(".cut", 80);
+        cut(".ttn", 20);
+        cutTime(".createTime", 10)
+        $('.industry_pagination').pagination({
+            totalData: totalData,
+            showData: showData,
+            coping: true,
+            homePage: '首页',
+            endPage: '末页',
+            prevContent: '«',
+            nextContent: '»',
+            callback: function (p) {
+                var num = p.getCurrent();
+                var html = '';
+                $.post('company/news/fr_manage', {pageNo: num, pageSize: 5, type: 3}, function (data) {
+                    $.each(data.result, function (i, m) {
+                        html += '<a href="news2.html?id=' + m.id + '" target="_blank"> <li><img src="' + m.src + '"><div class="sio"><h2  style=" font-weight:bold"><tt class="ttn">' + m.title + '</tt><span style="font-size:16px; margin-left:10px" class="createTime">' + m.createTime + '</span></h2> <p class="cut">' + m.content + '</p></div></li></a>'
+                    })
+                    $(".industryMore_message").html(html);
+                    $('p').addClass("cut");
+                    cut(".cut", 80);
+                    cut(".ttn", 20);
+                    cutTime(".createTime", 10)
+                })
+            }
+        })
+    })
+/* 	var active = detailsUrl.substring(detailsUrl.lastIndexOf('=')+1, detailsUrl.length); 
+	if(active == 1){
+		$(".messages_ac").addClass("active").siblings().removeClass("active");
+		$("#ios").addClass("active").siblings().removeClass("active");
+		eadio(); */
+    $(function () {
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            // 获取已激活的标签页的名称
+            var activeTab = $(e.target).text();
+            // 获取前一个激活的标签页的名称
+            var previousTab = $(e.relatedTarget).text();
+            $(".active-tab span").html(activeTab);
+            $(".previous-tab span").html(previousTab);
+        });
+    });
+</script>
+</body>
+</html>
+
+

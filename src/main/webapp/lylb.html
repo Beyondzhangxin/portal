@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>航天科工智慧产业发展有限公司</title>
+<script src="js/jquery2.0.js"></script>
+<script src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/pagination/jquery.pagination.js"></script>
+<script src="js/Validform_v5.3.2.js"></script>
+<style>
+.navbar{ background-color:#FFF !important}
+.contanter{ width:80%; margin:auto;}
+.gsjj{ width:50%;  float:left}
+.jsiu p{ clear:both; line-height:30px}
+.koj{ height:40px}
+.koj img{ float:left; margin-right:5px; margin-top:7px}
+.koj div{ float:left}
+.koj h5{ float:left}
+
+.img_contant{ width:30%; margin-left:70px; float:left; margin-top:20px}
+.img_contant img{ width:100%;}
+.img_contant h4{ text-align:center}
+
+.jsiu p{ margin-left:20px; width:80%;word-wrap:break-word; word-break:normal;}
+.clearfix {
+    clear: both;
+}
+.Validform_title{
+	display:none;
+}
+.Validform_info{
+    display:none;
+}
+.form-horizontal .form-group{
+	margin-left:-10px;
+}
+</style>
+</head>
+
+<body style=" background-image:url(images/images/bg.png); width:100%; height:100%">
+	<div class="gsjj">
+		<h2>留言列表<span style=" font-size:16px; margin-left:5px">共<span class="totalData"></span>条</span></h2>
+    	<!-- <div class="jsiu">
+        
+      <div class="koj">
+            <img src="images/images/icon.png">
+            <h5>张先生</h5>
+            <div style=" width:66%; height:1px; background-color:#777777; margin-top:20px;  margin-left:5px"></div>
+            <div style=" margin-top:10px; float:left; margin-left:10px">2017-08-20  15:30:25</div>
+        </div>
+        <p style=" margin-top:20px">哈青海和鱼肝油，爱看黑暗而尬舞及噶接个人，切割机个人结果见客人给近亲结婚，顾客群给借款人高科技。过去就看过人家
+去个人开机关枪，请客我家人各确定的。</p>
+		<p>电话 17246354366</p>
+        <p>QQ  647321324</p>
+        <p>邮箱 12331@23234.com</p>
+      
+	</div> -->
+	</div>
+	<div style=" width:450px; height:420px; border:1px solid #b4b4b4; position:absolute;right:15%; padding-right:20px;padding-top:20px">
+	<form class="form-horizontal registerform"  action="">
+	<!-- 	<table style="table-layout: fixed" class="formtable" border="0" cellpadding="0" cellspacing="0" width="95%">
+			<tr>
+				<td>
+                        <span>名称<b class="must">*</b></span>
+                        <span  style="width:66%"> <input type="text" class="txtinput name" name="name"    datatype="*"  nullmsg="请输入"  errormsg="请输入" ></span>
+                   		<span style="width:15%"><span class="Validform_checktip">11</span></span>
+                 </td>
+			</tr>
+			<tr>
+				<td><input type="submit" class="btn2 btn_save" value="保存"></td>
+			</tr>
+		</table> -->
+ <div class="form-group">
+		<label for="firstname" class="col-sm-2 control-label">称呼<b class="must">*</b></label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control"  datatype="*"  maxlength="16" name="name" id="firstname"  placeholder="必填">
+		</div>
+	
+	</div>
+	<div class="form-group">
+		<label for="lastname" class="col-sm-2 control-label">电话<b class="must">*</b></label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="lastname"  datatype="*"  maxlength="16" name="phoneNumber"
+				   placeholder="必填">
+		</div>
+	</div>
+    <div class="form-group">
+		<label for="firstname" class="col-sm-2 control-label">QQ  &nbsp; </label>
+		<div class="col-sm-10">
+			<input type="text"  name="qq" class="form-control"  maxlength="16"  id="firstname" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="lastname" class="col-sm-2 control-label">邮箱&nbsp;</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="lastname"   maxlength="16"  name="email"
+				   placeholder="">
+		</div>
+	</div>
+    <div class="form-group">
+		<label for="lastname" class="col-sm-2 control-label">留言<b class="must">*</b></label>
+		<div class="col-sm-10">
+			<textarea class="form-control" rows="3" datatype="*"  name="content"  maxlength="500"  placeholder="必填"></textarea>
+		</div>
+	</div>
+  
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10 " style="margin-top:5%">
+			<button type="submit" class="btn btn-danger " style="margin-left:25%">保存</button>
+            <button type="button" class="btn btn-primary btn_reset">重置</button>
+		</div>
+	</div> 
+</form>
+</div>
+	<br class="clearfix"/>
+	<div class="M-ddd"></div>
+<script>
+/* 左侧留言列表 */
+	 function messageList() {
+		 pageNo = 1;
+	    $.ajax({
+	        type: 'post',
+	        url: 'company/message/fr_manage',
+	        dataType: "json",
+	        data: {pageNo:pageNo},
+	        success: function (data) {
+	        	var totalData=data.totalCount;
+	        	var showData=data.pageSize;
+	        	$('.totalData').text(totalData)
+	        	var html = '	<h2>留言列表<span style=" font-size:16px; margin-left:5px">共<span class="totalData">'+totalData+'</span>条</span></h2>';
+				 $.each(data.result,function(i,m){
+						html+='<div class="jsiu">';
+						html+=  '<div class="koj">'
+						html+='     <img src="images/images/icon.png">'
+						html+='           <h5>'+m.name+'</h5>'
+						html+='            <div style=" width:66%; height:1px; background-color:#777777; margin-top:20px;  margin-left:5px"></div><br class="clearfix"/>'
+						html+='            <div style=" margin-left:65px">'+m.createTime+'</div>'
+						html+='        </div>'
+						html+='        <p style=" margin-top:20px">'+m.content+'</p>'
+						html+='  		<p>电话 : '+m.phoneNumber+'</p>'
+						html+='        <p>QQ : '+m.qq+'</p>'
+						html+='        <p>邮箱 :  '+m.email+'</p>';
+						if(m.reply!=null){
+   							html+='<p>回复 : '+m.reply+'</p>';
+   						}
+						html+='      	</div>';
+				}) 
+				$(".gsjj").html(html);	
+				 $('.M-ddd').pagination({
+						 totalData	:totalData,
+						 showData:showData,
+						coping:true,
+						homePage:'首页',
+						endPage:'末页',
+						prevContent:'«',
+						nextContent:'»',
+					    callback:function(api){
+					    	 var data = {pageNo: api.getCurrent()};
+					    	        $.post('company/message/fr_manage',data,function(json){
+							    	        	var html = '	<h2>留言列表<span style=" font-size:16px; margin-left:5px">共<span class="totalData">'+totalData+'</span>条</span></h2>';
+							   				 $.each(json.result,function(i,m){
+							   						html+='<div class="jsiu">';
+							   						html+=  '<div class="koj">'
+							   						html+='     <img src="images/images/icon.png">'
+							   						html+='           <h5>'+m.name+'</h5>'
+							   						html+='            <div style=" width:66%; height:1px; background-color:#777777; margin-top:20px;  margin-left:5px"></div><br class="clearfix"/>'
+							   						html+='            <div style="  margin-left:65px">'+m.createTime+'</div>'
+							   						html+='        </div>'
+							   						html+='        <p style=" margin-top:20px"> '+m.content+'</p>'
+							   						html+='  		<p>电话 '+m.phoneNumber+'</p>'
+							   						html+='        <p>QQ '+m.qq+'</p>'
+							   						html+='        <p>邮箱  '+m.email+'</p>';
+							   						if(m.reply!=null){
+							   							html+='<p>回复 '+m.reply+'</p>';
+							   						}
+							   						html+='      	</div>';
+							   				}) 
+							   				$(".gsjj").html(html);	
+					    	        });
+					    }
+					})
+				
+	        },
+	        err: function (data) {
+	            alert(data.message);
+	        }
+	    })
+	}
+	 messageList();
+	 
+	/*  客户留言表单 */
+	   $("form").attr('action',"company/message/fr_add");
+		$(".registerform:eq(0)").Validform({
+			ajaxPost:true,
+			showAllError:true,
+			tiptype:2,
+			tipSweep:true,
+			btnReset:".btn_reset",
+			datatype:{
+				"zh" : /^[\u4E00-\u9FA5\uf900-\ufa2d]{1,10}$/,
+				"en":/^[A-Za-z]{1,20}$/
+
+			},
+			callback:function(data){
+					alert("感谢你的留言")
+					location.reload();   
+			}
+		}); 
+ 
+</script>
+</body>
+</html>
